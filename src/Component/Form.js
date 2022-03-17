@@ -15,9 +15,25 @@ export default function Form({setCards}) {
 
     const handleSubmit = event => {
         event.preventDefault();
-        setCards(
-            previousCard => [{title: formTitle, content: formContent}, ...previousCard]
-        );
+        // count À faire in title
+        let todonb= 0;
+        document.querySelectorAll('.card-title').forEach(
+            (title) => {
+                if (title.innerText.includes('À faire')) {
+                    todonb++;
+                }
+            }
+        )
+        
+        if (todonb > 5) {
+            alert('Vous avez atteint le nombre maximum de card à faire');
+        }
+        else{
+            setCards(
+                previousCard => [{title: formTitle, content: formContent}, ...previousCard]
+            );
+        }
+        
         
     }
 
